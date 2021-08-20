@@ -11,8 +11,15 @@ namespace Problema02
 
             num1 = 30;
             num2 = 60;
-            result = Convert.ToByte(num1 * num2);
-            Console.WriteLine("{0} x {1} = {2}", num1, num2, result);
+            try
+            {
+                result = Convert.ToByte(num1 * num2);
+                Console.WriteLine("{0} x {1} = {2}", num1, num2, result);
+            }
+            catch (OverflowException)
+            {
+                Console.WriteLine("#ERROR El resultado de la operación es un valor muy grande para un byte sin signo");
+            }
             Console.ReadLine();
         }
     }
