@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 
 namespace adivinarElNumero
 {
@@ -38,9 +40,17 @@ namespace adivinarElNumero
                     }
                 }
 
-                catch(OverflowException)
+                catch(OverflowException ex)
                 {
                     Console.WriteLine("\n#ERROR El numero ingresado es demasiado grande. Debe estar entre 1 y 100.\n");
+                    FileStream archivo = new FileStream("Error.log", FileMode.Create);
+
+                    using (StreamWriter strWriter = new StreamWriter(archivo))
+                    {
+                        string excepcionStr = JsonSerializer.Serialize(ex.Message);
+                        strWriter.WriteLine("{0}", excepcionStr);
+                        strWriter.Close();
+                    }
                     intentos++;
                 }
 

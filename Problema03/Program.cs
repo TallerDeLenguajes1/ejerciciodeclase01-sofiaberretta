@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 
 namespace Problema03
 {
@@ -52,9 +54,10 @@ namespace Problema03
             {
                 Console.WriteLine("{0} - {1}", auto.Modelo, auto.Anio);
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException ex)
             {
                 Console.WriteLine("#ERROR El auto posee datos con valor nulo.");
+                
             }
 
             Console.ReadLine();
